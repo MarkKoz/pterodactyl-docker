@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM node:12-alpine
 
 MAINTAINER Cameron Carney <ccarney16@live.com>
 
