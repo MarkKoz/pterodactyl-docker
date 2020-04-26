@@ -12,7 +12,7 @@ services:
 ##
   mysql:
     env_file: .env
-    image: mariadb:10.2
+    image: linuxserver/mariadb
     restart: always
     volumes:
     - ./db:/var/lib/mysql
