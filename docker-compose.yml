@@ -35,7 +35,7 @@ services:
     - cache
     - mysql
     env_file: .env
-    image: ccarney16/pterodactyl-panel:latest
+    image: ccarney16/pterodactyl-panel
     restart: always
     volumes:
     - ./data:/data
@@ -54,7 +54,7 @@ services:
   daemon:
     depends_on:
     - panel
-    image: ccarney16/pterodactyl-daemon:latest
+    image: ccarney16/pterodactyl-daemon
     ports:
     -  ${DAEMON_PORT}:${DAEMON_PORT}
     privileged: true
