@@ -29,6 +29,10 @@ function init {
 
     rm -rf .env
     ln -s /data/pterodactyl.conf .env
+
+    # Create redirect of panel host to daemon
+    iptables -t nat -A OUTPUT -d "${PANEL_IP}" -dport "${DAEMON_PORT}" \
+        -j DNAT --to-destination "daemon:${DAEMON_PORT}"
 }
 
 # Runs the initial configuration on every startup
@@ -68,7 +72,7 @@ function startServer {
     if [[ "${STARTUP_TIMEOUT}" -gt "0" ]]; then
         echo "Starting Pterodactyl ${PANEL_VERSION} in ${STARTUP_TIMEOUT} seconds..."
         sleep ${STARTUP_TIMEOUT}
-    else 
+    else
         echo "Starting Pterodactyl ${PANEL_VERSION}..."
     fi
 
@@ -84,7 +88,7 @@ function startServer {
     if [ "${DISABLE_WORKERS}" != "true" ]; then
         /usr/sbin/crond -f -l 0 &
         php /var/www/html/artisan queue:work database --queue=high,standard,low --sleep=3 --tries=3 &
-    else 
+    else
         echo "[Warning] Disabling Workers (pteroq & cron); It is recommended to keep these enabled unless you know what you are doing."
     fi
 
