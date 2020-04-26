@@ -59,6 +59,9 @@ services:
     -  ${DAEMON_PORT}:${DAEMON_PORT}
     privileged: true
     restart: always
+    networks:
+      pterodactyl-docker_default:
+        ipv4_address: ${DAEMON_IP}
     volumes:
     - /srv/daemon/config:/srv/daemon/config
     - /srv/daemon/packs:/srv/daemon/packs
