@@ -31,7 +31,7 @@ function init {
     ln -s /data/pterodactyl.conf .env
 
     # Create redirect of panel host to daemon
-    iptables -t nat -A OUTPUT -d "${PANEL_IP}" -dport "${DAEMON_PORT}" \
+    iptables -t nat -A OUTPUT -d "${PANEL_IP}" --dport "${DAEMON_PORT}" \
         -j DNAT --to-destination "daemon:${DAEMON_PORT}"
 }
 
