@@ -3,6 +3,7 @@ FROM node:12-alpine
 MAINTAINER Cameron Carney <ccarney16@live.com>
 
 ARG VERSION
+ARG PORT
 
 ENV DAEMON_VERSION=${VERSION} \
     UID=500
@@ -20,6 +21,6 @@ RUN \
  && rm -rf /root/.npm /root/.node-gyp /root/.gnupg \
  /var/cache/apk/* /tmp/*
 
-EXPOSE 8080
+EXPOSE $PORT
 
 CMD [ "npm", "start" ]

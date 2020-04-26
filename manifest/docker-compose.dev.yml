@@ -5,12 +5,15 @@ services:
     build:
       args:
         VERSION: ${PANEL_VERSION}
+        PORT: ${PANEL_PORT}
+        PORT_SSL: ${PANEL_PORT_SSL}
       context: ./manifest/panel
     image: ccarney16/pterodactyl-panel:${PANEL_VERSION}
   daemon:
     build:
       args:
         VERSION: ${DAEMON_VERSION}
+        PORT: ${DAEMON_PORT}
       context: ./manifest/daemon
     image: ccarney16/pterodactyl-daemon:${DAEMON_VERSION}
   sftp:
