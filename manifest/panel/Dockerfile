@@ -3,8 +3,6 @@ FROM alpine:edge
 MAINTAINER Cameron Carney <ccarney16@live.com>
 
 ARG VERSION
-ARG PORT
-ARG PORT_SSL
 
 ENV STARTUP_TIMEOUT=5 \
     PANEL_VERSION=${VERSION}
@@ -35,7 +33,7 @@ COPY ./ /
 VOLUME [ "/data" ]
 
 # Expose HTTP and HTTPS ports
-EXPOSE $PORT $PORT_SSL
+EXPOSE 80 443
 
 ENTRYPOINT [ "/sbin/tini", "--", "/entrypoint.sh" ]
 

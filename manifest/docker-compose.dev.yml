@@ -5,8 +5,6 @@ services:
     build:
       args:
         VERSION: ${PANEL_VERSION}
-        PORT: ${PANEL_PORT}
-        PORT_SSL: ${PANEL_PORT_SSL}
       context: ./manifest/panel
     image: ccarney16/pterodactyl-panel:${PANEL_VERSION}
   daemon:
